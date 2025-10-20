@@ -205,10 +205,11 @@
     </div>
 
     <script>
-        
+        // Optional: Form validation atau handling
         document.getElementById('loginForm').addEventListener('submit', function(e) {
+            // e.preventDefault(); // Uncomment untuk testing
             
-           
+            // Contoh validasi sederhana
             const email = document.getElementById('email').value;
             const password = document.getElementById('password').value;
             

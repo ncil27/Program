@@ -11,7 +11,6 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::disableForeignKeyConstraints();
 
         Schema::create('iuran_tahunan', function (Blueprint $table) {
             $table->integer('id')->primary()->autoIncrement();
@@ -23,9 +22,9 @@ return new class extends Migration
             $table->text('keterangan')->nullable();
             $table->timestamp('updated_at')->nullable()->useCurrent();
             $table->unique(['id_keluarga', 'tahun']);
+            $table->foreign('tahun')->references('tahun')->on('master_iuran');
         });
 
-        Schema::enableForeignKeyConstraints();
     }
 
     /**
