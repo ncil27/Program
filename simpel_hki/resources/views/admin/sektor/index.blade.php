@@ -93,7 +93,7 @@
                                     </div>
                                 </form>
                                 
-                            </div>
+                            </div> 
                         </div>
                     </div>
                     <div class="modal fade text-left" id="editSektorModal" tabindex="-1" role="dialog" aria-labelledby="editSektorModalLabel" aria-hidden="true">
@@ -167,26 +167,26 @@
         });
         const editSektorModal = document.getElementById('editSektorModal');
         editSektorModal.addEventListener('show.bs.modal', event => {
-            // Tombol yang memicu modal
+            
             const button = event.relatedTarget;
 
-            // Ambil data dari atribut data-* di tombol
+            
             const id = button.getAttribute('data-id');
             const nama = button.getAttribute('data-nama');
             const keterangan = button.getAttribute('data-keterangan');
 
-            // Cari elemen form dan input di dalam modal
+            
             const form = editSektorModal.querySelector('#editSektorForm');
             const inputNama = editSektorModal.querySelector('#edit_nama_sektor');
             const inputKeterangan = editSektorModal.querySelector('#edit_keterangan');
 
-            // Atur URL action form-nya secara dinamis
-            // Ini akan menghasilkan URL seperti /sektor/5
+            
+            
             console.log({ id, nama, keterangan });
 
             form.action = `/sektor/${id}`;
 
-            // Isi nilai input di form modal dengan data dari tombol
+            
             inputNama.value = nama;
             inputKeterangan.value = keterangan;
         });
@@ -198,7 +198,7 @@
             const formData = new FormData(this);
 
             fetch(url, {
-                method: 'POST', // ⬅️ GUNAKAN POST
+                method: 'POST', 
                 headers: {
                     'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
                     'Accept': 'application/json',

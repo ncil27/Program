@@ -20,7 +20,7 @@ return new class extends Migration
             $table->text('keterangan')->nullable();
             $table->integer('updated_by')->nullable();
             $table->foreignId('created_by')->nullable()->constrained('users');
-            $table->timestamp('updated_at')->nullable()->useCurrent();
+            $table->timestamps();
         });
 
         Schema::enableForeignKeyConstraints();

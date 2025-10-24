@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin\Keuangan;
 
 use App\Http\Controllers\Controller;
+use App\Models\MasterIuran;
 use Illuminate\Http\Request;
 
 class MasterIuranController extends Controller
@@ -12,7 +13,8 @@ class MasterIuranController extends Controller
      */
     public function index()
     {
-        //
+        $masterIurans = MasterIuran::orderBy('tahun', 'desc')->get();
+        return view('admin.master-iuran.index', compact('masterIurans'));
     }
 
     /**
@@ -28,7 +30,19 @@ class MasterIuranController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'tahun' => 'required|integer|unique:master_iuran,tahun',
+            'jumlah_patokan_tahunan' => 'required|numeric',
+            'keterangan' => 'nullable|string',
+        ]);
+
+        MasterIuran::create([
+            'tahun' => $request->tahun,
+            'jumlah_patokan_tahunan' => $request->jumlah_patokan_tahunan,
+            'keterangan' => $request->keterangan,
+        ]);
+
+        return redirect()->route('master-iuran.index')->with('success', 'Nominal Persembahan Bulanan baru berhasil ditambahkan .');
     }
 
     /**
@@ -50,9 +64,19 @@ class MasterIuranController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, MasterIuran $masterIuran)
     {
-        //
+        $request->validate([
+            'jumlah_patokan_tahunan' => 'required|numeric',
+            'keterangan' => 'nullable|string',
+        ]);
+
+        $masterIuran->update([
+            'jumlah_patokan_tahunan' => $request->jumlah_patokan_tahunan,
+            'keterangan' => $request->keterangan,
+        ]);
+
+        return redirect()->route('master-iuran.index')->with('success', 'Nominal Persembahan Bulanan berhasil diperbarui.');
     }
 
     /**

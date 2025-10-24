@@ -100,8 +100,8 @@
                                 <li class="submenu-item ">
                                     <a href="layout-vertical-1-column.html">Persembahan Bulanan</a>
                                 </li>
-                                <li class="submenu-item ">
-                                    <a href="layout-vertical-1-column.html">Master Iuran</a>
+                                <li class="submenu-item {{ request()->is('master-iuran*') ? 'active' : '' }}">
+                                    <a href="{{ route('master-iuran.index') }}">Master Iuran</a>
                                 </li>
                             </ul>
                         </li>
